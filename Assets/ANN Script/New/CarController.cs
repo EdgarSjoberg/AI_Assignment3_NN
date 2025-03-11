@@ -34,7 +34,6 @@ public class CarController : MonoBehaviour
     private float averageSpeed;
 
     [Header("Sensors")]
-    public float sensorScale = 20f;
     private float aSensor, bSensor, cSensor;
 
     [Header("Win/Lose Condition")]
@@ -89,9 +88,6 @@ public class CarController : MonoBehaviour
 
         timeSinceStart += Time.deltaTime;
         CalculateFitness();
-
-        //a = 0;
-        //t = 0;
     }
     private void CalculateFitness()
     {
@@ -114,6 +110,8 @@ public class CarController : MonoBehaviour
         }
     }
 
+
+    //3 raycasts to detect the distance to the walls infront of it
     private void InputSensors()
     {
         //create 3 raycasts directions
@@ -146,7 +144,7 @@ public class CarController : MonoBehaviour
         }
 
         Vector3 sensors = new Vector3 (aSensor, bSensor, cSensor); //normalize the values to get it between -1 and 1 for the neural network
-        sensors.Normalize();
+        sensors.Normalize(); //gives better results for the neural network (my own testing)
 
         aSensor = sensors.x;
         print("A: " + aSensor);
