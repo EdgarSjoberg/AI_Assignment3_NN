@@ -49,7 +49,6 @@ public class CarController : MonoBehaviour
         network = GetComponent<NeuralNetwork>();
 
         //network.Initialize(layers, neurons);
-
     }
 
     //reset when the next car will start
@@ -63,12 +62,8 @@ public class CarController : MonoBehaviour
         transform.position = startPosition;
         transform.eulerAngles = startRotation;
 
-
-
         //network.Initialize(layers, neurons); //randomizes the weights to try again
-
     }
-
 
     //resets the car when it hits a wall
     public void OnCollisionEnter(Collision collision)
@@ -76,7 +71,8 @@ public class CarController : MonoBehaviour
         Death();
     }
 
-    
+
+    //take in sensor values, run the network, move the car, calculate the fitness
     private void FixedUpdate()
     {
         InputSensors();
@@ -89,6 +85,7 @@ public class CarController : MonoBehaviour
         timeSinceStart += Time.deltaTime;
         CalculateFitness();
     }
+
     private void CalculateFitness()
     {
         totalDistanceTravelled += Vector3.Distance(transform.position, lastPosition); //find distance traveled since last calculation
@@ -109,7 +106,6 @@ public class CarController : MonoBehaviour
             Death();
         }
     }
-
 
     //3 raycasts to detect the distance to the walls infront of it
     private void InputSensors()

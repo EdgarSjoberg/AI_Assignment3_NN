@@ -71,20 +71,6 @@ public class GeneticManager : MonoBehaviour
         }
     }
 
-    public void Death(float fitness, NeuralNetwork network)
-    {
-        if (currentGenome < population.Length - 1)
-        {
-            population[currentGenome].fitness = fitness;
-            currentGenome++;
-            ResetToCurrentGenome();
-        }
-        else
-        {
-            Repopulate();
-        }
-    }
-
     private void Repopulate()
     {
         genePool.Clear();
@@ -103,7 +89,7 @@ public class GeneticManager : MonoBehaviour
         population = newPopulation;
         currentGenome = 0;
         ResetToCurrentGenome();
-        currentGeneration++;
+        //currentGeneration++;
     }
 
     public void Crossover(NeuralNetwork[] newPopulation)
@@ -242,6 +228,20 @@ public class GeneticManager : MonoBehaviour
 
         return newPopulation;
     }
+    public void Death(float fitness, NeuralNetwork network)
+    {
+        if (currentGenome < population.Length - 1)
+        {
+            population[currentGenome].fitness = fitness;
+            currentGenome++;
+            ResetToCurrentGenome();
+        }
+        else
+        {
+            Repopulate();
+        }
+    }
+
 
     //bubble sort to sort the population by fitness
     private void SortPopulation()

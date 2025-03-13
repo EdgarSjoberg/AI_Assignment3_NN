@@ -109,7 +109,7 @@ public class NeuralNetwork : MonoBehaviour
         inputLayer[0, 2] = c;
 
         //tan h adjusts the value to be between -1 and 1
-        inputLayer = inputLayer.PointwiseTanh();
+        //inputLayer = inputLayer.PointwiseTanh();
 
         //multiply the input layer with the first weight matrix and add the bias, then applying tanh to adjust the value to be between -1 and 1
         hiddenLayers[0] = ((inputLayer * weights[0]) + biases[0]).PointwiseTanh();
